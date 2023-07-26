@@ -5,13 +5,15 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static io.restassured.RestAssured.*;
 
-public class GetBookingIdsTests {
+public class GetBookingIdsTest {
 
-    String getBookingUrl = "https://restful-booker.herokuapp.com/booking";
+    private String getBookingUrl = "https://restful-booker.herokuapp.com/booking";
 
     @Test
     public void getBookingIdsWithoutFiltersTest() {
@@ -25,6 +27,8 @@ public class GetBookingIdsTests {
         // verify at least one booking id in response
         List<Integer> bookingIds = response.jsonPath().getList("bookingid");
         System.out.println("There are " + bookingIds.size() + " actual bookings in the system");
+        Collections.sort(bookingIds);
+        System.out.println(bookingIds);
         Assert.assertFalse(bookingIds.isEmpty(), "The list is empty");
 
     }
