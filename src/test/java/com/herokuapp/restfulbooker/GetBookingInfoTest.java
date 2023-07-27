@@ -14,7 +14,7 @@ import java.util.Random;
 public class GetBookingInfoTest {
 
     private String getBookingUrl = "https://restful-booker.herokuapp.com/booking/";
-    private int bookingId = 9;
+    private int bookingId = 20;
 
     @Test
     public void getBookingInfoNameTest( ) {
@@ -42,38 +42,27 @@ public class GetBookingInfoTest {
         SoftAssert softAssert = new SoftAssert();
 
         String actualFirstname = response.jsonPath().getString("firstname");
-        softAssert.assertEquals(actualFirstname,"Eric", "Value of first name is not expected");
+        softAssert.assertEquals(actualFirstname,"Josh", "Value of first name is not expected");
 
         String actualLastName = response.jsonPath().getString("lastname");
-        softAssert.assertEquals(actualLastName, "Wilson", "Value of last name is not expected");
+        softAssert.assertEquals(actualLastName, "Allen", "Value of last name is not expected");
 
         double actualTotalPrice = response.jsonPath().getDouble("totalprice");
-        softAssert.assertEquals(actualTotalPrice, 710, "The total price is wrong");
+        softAssert.assertEquals(actualTotalPrice, 111.0, "The total price is wrong");
 
         boolean depositPaid = response.jsonPath().getBoolean("depositpaid");
         softAssert.assertTrue(depositPaid, "Depоsit schould be paid, but it has not been payed");
 
         String actualCheckIn = response.jsonPath().getString("bookingdates.checkin");
-        softAssert.assertEquals(actualCheckIn, "2016-09-27", "Value of check in date is not expected");
+        softAssert.assertEquals(actualCheckIn, "2018-01-01", "Value of check in date is not expected");
 
         String actualCheckOut = response.jsonPath().getString("bookingdates.checkout");
-        softAssert.assertEquals(actualCheckIn, "2022-01-09", "Value of check ot date is not expected");
+        softAssert.assertEquals(actualCheckIn, "2019-01-01", "Value of check out date is not expected");
 
         String addNeeds = response.jsonPath().getString("additionalneeds");
-        softAssert.assertEquals(addNeeds, "Breakfast", "Value of additional needs field is not expected");
+        softAssert.assertEquals(addNeeds, "superb owls", "Value of additional needs field is not expected");
 
         softAssert.assertAll("One or more values are not expected");
-
-/*
-{"firstname":"Eric",
-"lastname":"Wilson",
-"totalprice":710,
-"depositpaid":true,
-"bookingdates":{"checkin":"2016-09-27","checkout":"2022-01-09"},
-"additionalneeds":"Breakfast"}
- */
-
-
 
     }
 
