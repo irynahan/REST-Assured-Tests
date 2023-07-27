@@ -57,7 +57,7 @@ public class GetBookingInfoTest {
         softAssert.assertEquals(actualCheckIn, "2018-01-01", "Value of check in date is not expected");
 
         String actualCheckOut = response.jsonPath().getString("bookingdates.checkout");
-        softAssert.assertEquals(actualCheckIn, "2019-01-01", "Value of check out date is not expected");
+        softAssert.assertEquals(actualCheckOut, "2019-01-01", "Value of check out date is not expected");
 
         String addNeeds = response.jsonPath().getString("additionalneeds");
         softAssert.assertEquals(addNeeds, "superb owls", "Value of additional needs field is not expected");
