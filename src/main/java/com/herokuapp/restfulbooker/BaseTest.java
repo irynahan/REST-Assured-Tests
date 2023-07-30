@@ -28,4 +28,6 @@ public class BaseTest {
         Response response = RestAssured.given().contentType(ContentType.JSON).body(body.toString()).post(createBookingUrl);
         return response;
     }
+
+
 }
