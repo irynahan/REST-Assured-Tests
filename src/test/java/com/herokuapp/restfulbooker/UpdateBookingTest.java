@@ -11,8 +11,6 @@ import org.testng.asserts.SoftAssert;
 
 public class UpdateBookingTest extends BaseTest {
 
-    private String BaseUrl = "https://restful-booker.herokuapp.com/booking/";
-
     @Test
     public void updateBookingTest() {
 

@@ -8,6 +8,7 @@ import org.json.JSONObject;
 public class BaseTest {
 
     private String createBookingUrl = "https://restful-booker.herokuapp.com/booking";
+    protected String BaseUrl = "https://restful-booker.herokuapp.com/booking/";
 
     protected Response createNewBooking() {
         // create json body

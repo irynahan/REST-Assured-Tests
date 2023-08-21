@@ -11,15 +11,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class GetBookingInfoTest {
+public class GetBookingInfoTest extends BaseTest {
 
-    private String getBookingUrl = "https://restful-booker.herokuapp.com/booking/";
-    private int bookingId = 20;
+    private int bookingId = 14;
 
     @Test
     public void getBookingInfoNameTest( ) {
         // get booking with booking ID
-        Response response = RestAssured.get(getBookingUrl + bookingId);
+        Response response = RestAssured.get(BaseUrl + bookingId);
         response.print();
         // check of status code
         Assert.assertEquals(response.getStatusCode(), 200);
@@ -32,7 +31,7 @@ public class GetBookingInfoTest {
     @Test
     public void getBookingInfoAllFieldsTest(){
         // get booking with booking ID
-        Response response= RestAssured.get(getBookingUrl+bookingId);
+        Response response= RestAssured.get(BaseUrl+bookingId);
         response.print();
 
         // check of status code

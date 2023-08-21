@@ -7,8 +7,6 @@ import org.testng.annotations.Test;
 
 public class DeleteBookingTest extends BaseTest{
 
-    private String BaseUrl = "https://restful-booker.herokuapp.com/booking/";
-
     @Test
     public void deleteBookingTest(){
 
