@@ -13,10 +13,9 @@ import static io.restassured.RestAssured.*;
 
 public class GetBookingIdsTest extends BaseTest {
 
-    private String getBookingUrl = "https://restful-booker.herokuapp.com/booking";
-
     @Test
     public void getBookingIdsWithoutFiltersTest() {
+
         // Get response with booking ids
         Response response = RestAssured.given().
                 spec(spec).

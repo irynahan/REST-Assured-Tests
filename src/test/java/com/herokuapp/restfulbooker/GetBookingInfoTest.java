@@ -2,6 +2,7 @@ package com.herokuapp.restfulbooker;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.http.Header;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -42,13 +43,14 @@ public class GetBookingInfoTest extends BaseTest {
     @Test
     public void getBookingInfoAllFieldsTest(){
 
-        // create new booking and get ID
+        // create new booking
         Response responseBookingCreated = createNewBooking();
+        responseBookingCreated.print();
 
-        // set path parameter
+        // set path parameter and get ID
         spec.pathParam("bookingId", responseBookingCreated.jsonPath().getInt("bookingid"));
 
-        // get booking with booking ID
+        // get booking with created booking ID
         Response response= RestAssured.given().
                 spec(spec).
                 get("/booking/{bookingId}");
@@ -79,6 +81,58 @@ public class GetBookingInfoTest extends BaseTest {
         softAssert.assertEquals(actualCheckOut, "2019-01-01", "Value of check out date is not expected");
 
         String addNeeds = response.jsonPath().getString("additionalneeds");
+        softAssert.assertEquals(addNeeds, "Breakfast", "Value of additional needs field is not expected");
+
+        softAssert.assertAll("One or more values are not expected");
+
+    }
+
+    @Test
+    public void getBookingInfoXMLTest() {
+
+        // create new booking
+        Response responseBookingCreated = createNewBooking();
+        responseBookingCreated.print();
+
+        // set path parameter and get ID
+        spec.pathParam("bookingId", responseBookingCreated.jsonPath().getInt("bookingid"));
+
+
+        // header for Get request to set a response format
+        Header xml = new Header("Accept", "application/xml");
+        spec.header(xml);
+
+        // get booking with created booking ID
+        Response response= RestAssured.given().
+                spec(spec).
+                get("/booking/{bookingId}");
+        response.print();
+
+        // check of status code
+        Assert.assertEquals(response.getStatusCode(), 200, "Expected status code is 200, but it is not");
+
+        // check value of all response fields with soft assert
+        SoftAssert softAssert = new SoftAssert();
+
+        String actualFirstname = response.xmlPath().getString("booking.firstname");
+        softAssert.assertEquals(actualFirstname,"Olga", "Value of first name is not expected");
+
+        String actualLastName = response.xmlPath().getString("booking.lastname");
+        softAssert.assertEquals(actualLastName, "Moroz", "Value of last name is not expected");
+
+        double actualTotalPrice = response.xmlPath().getDouble("booking.totalprice");
+        softAssert.assertEquals(actualTotalPrice, 400.0, "The total price is wrong");
+
+        boolean depositPaid = response.xmlPath().getBoolean("booking.depositpaid");
+        softAssert.assertTrue(depositPaid, "Depоsit schould be paid, but it has not been payed");
+
+        String actualCheckIn = response.xmlPath().getString("booking.bookingdates.checkin");
+        softAssert.assertEquals(actualCheckIn, "2018-01-01", "Value of check in date is not expected");
+
+        String actualCheckOut = response.xmlPath().getString("booking.bookingdates.checkout");
+        softAssert.assertEquals(actualCheckOut, "2019-01-01", "Value of check out date is not expected");
+
+        String addNeeds = response.xmlPath().getString("booking.additionalneeds");
         softAssert.assertEquals(addNeeds, "Breakfast", "Value of additional needs field is not expected");
 
         softAssert.assertAll("One or more values are not expected");
