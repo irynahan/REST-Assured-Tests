@@ -36,7 +36,12 @@ public class BaseTest {
         body.put("additionalneeds", "Breakfast");
 
         // get response
-        Response response = RestAssured.given().spec(spec).contentType(ContentType.JSON).body(body.toString()).post(createBookingEndPoint);
+        Response response = RestAssured.given().
+                spec(spec).
+                contentType(ContentType.JSON).
+                body(body.toString()).
+                log().all().
+                post(createBookingEndPoint);
         return response;
     }
 
