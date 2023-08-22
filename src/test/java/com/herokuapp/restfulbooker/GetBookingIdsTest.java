@@ -34,4 +34,29 @@ public class GetBookingIdsTest extends BaseTest {
         Assert.assertFalse(bookingIds.isEmpty(), "The list is empty");
 
     }
+
+    @Test
+    public void getBookingIdsWithFilterByFirstnameTest() {
+        // get request with query
+        Response responseGetBookingByFirstname = RestAssured.given().
+                spec(spec).
+                get("/booking?firstname=Olga");
+        responseGetBookingByFirstname.print();
+
+    }
+
+    @Test
+    public void getBookingWithSpecFilter() {
+        // add query parameters to spec
+        spec.queryParam("firstname", "Olga");
+        spec.queryParam("lastname", "Moroz");
+
+        // get request booking with query filter
+        Response responseGetBookingByFirstname = RestAssured.given(spec).get("/booking");
+        responseGetBookingByFirstname.print();
+
+
+
+    }
+
 }
