@@ -18,20 +18,24 @@ public class GetBookingInfoTest extends BaseTest {
     @Test
     public void getBookingInfoNameTest( ) {
         // get booking with booking ID
-        Response response = RestAssured.get(BaseUrl + bookingId);
+        Response response = RestAssured.given().
+                spec(spec).
+                get("/booking/" + bookingId);
         response.print();
         // check of status code
         Assert.assertEquals(response.getStatusCode(), 200);
         // check first and last name in the booking
         String firstName = response.jsonPath().getString("firstname");
         String lastName = response.jsonPath().getString("lastname");
-        Assert.assertEquals(firstName + lastName, "Mary" + "Jones", "name of the client is wrong");
+        Assert.assertEquals(firstName + lastName, "John" + "Smith", "name of the client is wrong");
     }
 
     @Test
     public void getBookingInfoAllFieldsTest(){
         // get booking with booking ID
-        Response response= RestAssured.get(BaseUrl+bookingId);
+        Response response= RestAssured.given().
+                spec(spec).
+                get("/booking/" + bookingId);
         response.print();
 
         // check of status code

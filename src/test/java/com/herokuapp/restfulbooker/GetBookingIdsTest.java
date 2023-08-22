@@ -11,14 +11,16 @@ import java.util.List;
 
 import static io.restassured.RestAssured.*;
 
-public class GetBookingIdsTest {
+public class GetBookingIdsTest extends BaseTest {
 
     private String getBookingUrl = "https://restful-booker.herokuapp.com/booking";
 
     @Test
     public void getBookingIdsWithoutFiltersTest() {
         // Get response with booking ids
-        Response response = RestAssured.get(getBookingUrl);
+        Response response = RestAssured.given().
+                spec(spec).
+                get("/booking");
         response.print();
 
         // verify response with status code 200

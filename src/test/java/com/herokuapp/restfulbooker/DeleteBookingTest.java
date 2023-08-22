@@ -17,7 +17,9 @@ public class DeleteBookingTest extends BaseTest{
 
         // delete request to delete booking
 
-        Response responseDelete = RestAssured.given().auth().preemptive().basic("admin","password123").delete(BaseUrl + bookingId);
+        Response responseDelete = RestAssured.given().
+                spec(spec).auth().preemptive().basic("admin","password123").
+                delete("/booking/" + bookingId);
         responseDelete.print();
 
         // Verify response code
@@ -25,7 +27,7 @@ public class DeleteBookingTest extends BaseTest{
 
         // Verify that booking was deleted - response message
 
-        Response responseGetBookingInfo = RestAssured.get(BaseUrl+bookingId);
+        Response responseGetBookingInfo = RestAssured.given().spec(spec).get("/booking/" + bookingId);
         responseGetBookingInfo.print();
 
         Assert.assertEquals(responseGetBookingInfo.getBody().asString(), "Not Found","Body should be Not found, but is not");

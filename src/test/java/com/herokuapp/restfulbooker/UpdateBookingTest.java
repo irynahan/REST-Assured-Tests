@@ -35,7 +35,10 @@ public class UpdateBookingTest extends BaseTest {
         updateBody.put("additionalneeds", "Breakfast");
 
         // update booking
-        Response responseUpdate = RestAssured.given().auth().preemptive().basic("admin","password123").contentType(ContentType.JSON).body(updateBody.toString()).put(BaseUrl + bookingId);
+        Response responseUpdate = RestAssured.given().
+                spec(spec).auth().preemptive().basic("admin","password123").
+                contentType(ContentType.JSON).body(updateBody.toString()).
+                put("/booking/" + bookingId);
         responseUpdate.print();
         
         // check status code
