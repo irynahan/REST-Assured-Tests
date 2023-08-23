@@ -2,23 +2,23 @@ package com.herokuapp.restfulbooker;
 
 public class BookingId {
 
-    private int bookingId;
+    private int bookingid;
     private Booking booking;
 
-    public BookingId(int bookingId, Booking booking) {
-        this.bookingId = bookingId;
+    public BookingId(int bookingid, Booking booking) {
+        this.bookingid = bookingid;
         this.booking = booking;
     }
 
     public BookingId() {
     }
 
-    public int getBookingId() {
-        return bookingId;
+    public int getBookingid() {
+        return bookingid;
     }
 
-    public void setBookingId(int bookingId) {
-        this.bookingId = bookingId;
+    public void setBookingid(int bookingid) {
+        this.bookingid = bookingid;
     }
 
     public Booking getBooking() {
@@ -32,9 +32,8 @@ public class BookingId {
     @Override
     public String toString() {
         return "BookingId{" +
-                "bookingId=" + bookingId +
+                "bookingid=" + bookingid +
                 ", booking=" + booking +
                 '}';
     }
-
 }

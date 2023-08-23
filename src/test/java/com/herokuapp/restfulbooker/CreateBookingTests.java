@@ -97,5 +97,32 @@ public class CreateBookingTests extends BaseTest {
 
     }
 
+    @Test
+    public void  createNewBookingPOJOResponseTest() {
+
+        // create body using POJOs
+        Bookingdates bookingdates = new Bookingdates("2023-01-01", "2023-01-09");
+        Booking booking = new Booking("Leonid", "Voronin", 750, true, bookingdates, "Baby crib");
+
+        // get response
+        RequestSpecification given = RestAssured.given(spec).log().all();
+        Response response  = given.
+                contentType(ContentType.JSON).
+                body(booking).
+                post("/booking");
+        response.print();
+
+        // convert response body as the class BookingID
+        BookingId bookingId = response.as(BookingId.class);
+
+        // check the status code
+        Assert.assertEquals(response.getStatusCode(), 200, "Expected status code is 200, but it is not");
+
+
+        // verify all fields
+        Assert.assertEquals(bookingId.getBooking().toString(), booking.toString(), "Some fields are not equals");
+
+    }
+
 }
 

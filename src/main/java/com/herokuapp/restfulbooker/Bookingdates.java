@@ -10,6 +10,9 @@ public class Bookingdates {
         this.checkout = heckout;
     }
 
+    public Bookingdates() {
+    }
+
     public String getCheckin() {
         return checkin;
     }
