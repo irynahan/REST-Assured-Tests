@@ -4,7 +4,6 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -56,7 +55,7 @@ public class CreateBookingTests extends BaseTest {
 
         // create body using POJOs
         Bookingdates bookingdates = new Bookingdates("2023-01-01", "2023-01-09");
-        Booking booking = new Booking("Leonid", "Voronin", 750, false,bookingdates, "Baby crib");
+        Booking booking = new Booking("Leonid", "Voronin", 750, true, bookingdates, "Baby crib");
 
         // get response
         RequestSpecification given = RestAssured.given(spec).log().all();
