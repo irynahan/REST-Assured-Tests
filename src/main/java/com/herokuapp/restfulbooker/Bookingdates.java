@@ -3,11 +3,11 @@ package com.herokuapp.restfulbooker;
 public class Bookingdates {
 
     private String checkin;
-    private String heckout;
+    private String checkout;
 
     public Bookingdates(String checkin, String heckout) {
         this.checkin = checkin;
-        this.heckout = heckout;
+        this.checkout = heckout;
     }
 
     public String getCheckin() {
@@ -18,19 +18,19 @@ public class Bookingdates {
         this.checkin = checkin;
     }
 
-    public String getHeckout() {
-        return heckout;
+    public String getCheckout() {
+        return checkout;
     }
 
-    public void setHeckout(String heckout) {
-        this.heckout = heckout;
+    public void setCheckout(String checkout) {
+        this.checkout = checkout;
     }
 
     @Override
     public String toString() {
         return "Bookingdates{" +
                 "checkin='" + checkin + '\'' +
-                ", heckout='" + heckout + '\'' +
+                ", heckout='" + checkout + '\'' +
                 '}';
     }
 }

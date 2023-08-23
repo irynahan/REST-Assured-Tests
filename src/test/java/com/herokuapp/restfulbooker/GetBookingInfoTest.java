@@ -21,8 +21,8 @@ public class GetBookingInfoTest extends BaseTest {
 
         // create new booking and get ID
         Response responseBookingCreated = createNewBooking();
-        //int createdBookingId = responseBookingCreated.jsonPath().getInt("bookingid");
 
+        //https://restful-booker.herokuapp.com/booking/:id
         // set path parameter
         spec.pathParam("bookingId", responseBookingCreated.jsonPath().getInt("bookingid"));
 

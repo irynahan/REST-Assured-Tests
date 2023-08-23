@@ -46,6 +46,8 @@ public class GetBookingIdsTest extends BaseTest {
 
     @Test
     public void getBookingWithSpecFilter() {
+
+        // https://restful-booker.herokuapp.com/booking?firstname=sally&lastname=brown
         // add query parameters to spec
         spec.queryParam("firstname", "Olga");
         spec.queryParam("lastname", "Moroz");
