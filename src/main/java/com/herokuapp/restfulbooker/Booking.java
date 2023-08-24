@@ -24,6 +24,7 @@ public class Booking {
         this.additionalneeds = additionalneeds;
     }
 
+    // empty constructor for response object
     public Booking() {
     }
 

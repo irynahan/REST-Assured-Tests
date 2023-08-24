@@ -5,10 +5,10 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class DeleteBookingTest extends BaseTest{
+public class DeleteBookingTest extends BaseTest {
 
     @Test
-    public void deleteBookingTest(){
+    public void deleteBookingTest() {
 
         // create new booking and get the booking ID
         Response responseBookingCreated = createNewBooking();
@@ -17,9 +17,10 @@ public class DeleteBookingTest extends BaseTest{
 
         // delete request to delete booking
 
-        Response responseDelete = RestAssured.given().
-                spec(spec).auth().preemptive().basic("admin","password123").
-                delete("/booking/" + bookingId);
+        Response responseDelete = RestAssured.given()
+                .spec(spec)
+                .auth().preemptive().basic("admin", "password123")
+                .delete("/booking/" + bookingId);
         responseDelete.print();
 
         // Verify response code
@@ -30,7 +31,7 @@ public class DeleteBookingTest extends BaseTest{
         Response responseGetBookingInfo = RestAssured.given().spec(spec).get("/booking/" + bookingId);
         responseGetBookingInfo.print();
 
-        Assert.assertEquals(responseGetBookingInfo.getBody().asString(), "Not Found","Body should be Not found, but is not");
+        Assert.assertEquals(responseGetBookingInfo.getBody().asString(), "Not Found", "Body should be Not found, but is not");
 
     }
 }

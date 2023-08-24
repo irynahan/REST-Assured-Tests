@@ -51,18 +51,18 @@ public class CreateBookingTests extends BaseTest {
     }
 
     @Test
-    public void  createNewBookingPOJOTest() {
+    public void createNewBookingPOJOTest() {
 
         // create body using POJOs
         Bookingdates bookingdates = new Bookingdates("2023-01-01", "2023-01-09");
         Booking booking = new Booking("Leonid", "Voronin", 750, true, bookingdates, "Baby crib");
 
         // get response
-        RequestSpecification given = RestAssured.given(spec).log().all();
-        Response response  = given.
-                contentType(ContentType.JSON).
-                body(booking).
-                post("/booking");
+        Response response = RestAssured.given(spec)
+                .contentType(ContentType.JSON)
+                .body(booking)
+                .log().all()
+                .post("/booking");
         response.print();
 
         // check the status code
@@ -98,18 +98,18 @@ public class CreateBookingTests extends BaseTest {
     }
 
     @Test
-    public void  createNewBookingPOJOResponseTest() {
+    public void createNewBookingPOJOResponseTest() {
 
         // create body using POJOs
         Bookingdates bookingdates = new Bookingdates("2023-01-01", "2023-01-09");
         Booking booking = new Booking("Leonid", "Voronin", 750, true, bookingdates, "Baby crib");
 
         // get response
-        RequestSpecification given = RestAssured.given(spec).log().all();
-        Response response  = given.
-                contentType(ContentType.JSON).
-                body(booking).
-                post("/booking");
+        Response response = RestAssured.given(spec)
+                .contentType(ContentType.JSON)
+                .body(booking)
+                .log().all()
+                .post("/booking");
         response.print();
 
         // convert response body as the class BookingID

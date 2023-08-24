@@ -1,7 +1,7 @@
 package com.herokuapp.restfulbooker;
 
 public class BookingId {
-
+    // POJO class für response checks
     private int bookingid;
     private Booking booking;
 

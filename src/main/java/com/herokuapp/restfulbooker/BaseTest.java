@@ -16,6 +16,7 @@ public class BaseTest {
     public void setUp() {
         spec = new RequestSpecBuilder().setBaseUri("https://restful-booker.herokuapp.com").build();
     }
+
     // "https://restful-booker.herokuapp.com/booking/"
     private String createBookingEndPoint = "/booking";
 
@@ -37,12 +38,12 @@ public class BaseTest {
 
         String requestBody = body.toString();
         // get response
-        Response response = RestAssured.given().
-                spec(spec).
-                contentType(ContentType.JSON).
-                body(requestBody).
-                log().all().
-                post(createBookingEndPoint);
+        Response response = RestAssured.given()
+                .spec(spec)
+                .contentType(ContentType.JSON)
+                .body(requestBody)
+                .log().all()
+                .post(createBookingEndPoint);
         return response;
     }
 

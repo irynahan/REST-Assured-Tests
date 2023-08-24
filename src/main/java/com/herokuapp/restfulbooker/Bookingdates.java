@@ -10,6 +10,7 @@ public class Bookingdates {
         this.checkout = heckout;
     }
 
+    // empty constructor for response object
     public Bookingdates() {
     }
 
