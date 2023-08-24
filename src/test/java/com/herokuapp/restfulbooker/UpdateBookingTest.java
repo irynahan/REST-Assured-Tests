@@ -35,17 +35,19 @@ public class UpdateBookingTest extends BaseTest {
         updateBody.put("additionalneeds", "Breakfast");
 
         // update booking
-        Response responseUpdate = RestAssured.given().
-                spec(spec).auth().preemptive().basic("admin","password123").
-                contentType(ContentType.JSON).body(updateBody.toString()).
-                put("/booking/" + bookingId);
+        Response responseUpdate = RestAssured.given()
+                .spec(spec)
+                .auth().preemptive().basic("admin", "password123")
+                .contentType(ContentType.JSON)
+                .body(updateBody.toString())
+                .put("/booking/" + bookingId);
         responseUpdate.print();
-        
+
         // check status code
         Assert.assertEquals(responseUpdate.getStatusCode(), 200, "Actual status code is not correct");
-        
+
         // check response body
-        
+
         SoftAssert softAssert = new SoftAssert();
         String actualFirstname = responseUpdate.jsonPath().getString("firstname");
         softAssert.assertEquals(actualFirstname, "Olga", "Value of first name is not expected");
@@ -67,7 +69,7 @@ public class UpdateBookingTest extends BaseTest {
 
         String addNeeds = responseUpdate.jsonPath().getString("additionalneeds");
         softAssert.assertEquals(addNeeds, "Breakfast", "Value of additional needs field is not expected");
-        
+
         softAssert.assertAll("One or more parameters in the body are not correct");
 
         System.out.println(responseUpdate.getStatusCode());

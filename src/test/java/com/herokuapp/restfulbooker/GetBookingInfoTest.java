@@ -17,7 +17,7 @@ import java.util.Random;
 public class GetBookingInfoTest extends BaseTest {
 
     @Test
-    public void getBookingInfoNameTest( ) {
+    public void getBookingInfoNameTest() {
 
         // create new booking and get ID
         Response responseBookingCreated = createNewBooking();
@@ -27,9 +27,9 @@ public class GetBookingInfoTest extends BaseTest {
         spec.pathParam("bookingId", responseBookingCreated.jsonPath().getInt("bookingid"));
 
         // get booking with booking ID
-        Response response = RestAssured.given().
-                spec(spec).
-                get("/booking/{bookingId}");
+        Response response = RestAssured.given()
+                .spec(spec)
+                .get("/booking/{bookingId}");
         response.print();
 
         // check of status code
@@ -41,7 +41,7 @@ public class GetBookingInfoTest extends BaseTest {
     }
 
     @Test
-    public void getBookingInfoAllFieldsTest(){
+    public void getBookingInfoAllFieldsTest() {
 
         // create new booking
         Response responseBookingCreated = createNewBooking();
@@ -51,9 +51,9 @@ public class GetBookingInfoTest extends BaseTest {
         spec.pathParam("bookingId", responseBookingCreated.jsonPath().getInt("bookingid"));
 
         // get booking with created booking ID
-        Response response= RestAssured.given().
-                spec(spec).
-                get("/booking/{bookingId}");
+        Response response = RestAssured.given()
+                .spec(spec)
+                .get("/booking/{bookingId}");
         response.print();
 
         // check of status code
@@ -63,7 +63,7 @@ public class GetBookingInfoTest extends BaseTest {
         SoftAssert softAssert = new SoftAssert();
 
         String actualFirstname = response.jsonPath().getString("firstname");
-        softAssert.assertEquals(actualFirstname,"Olga", "Value of first name is not expected");
+        softAssert.assertEquals(actualFirstname, "Olga", "Value of first name is not expected");
 
         String actualLastName = response.jsonPath().getString("lastname");
         softAssert.assertEquals(actualLastName, "Moroz", "Value of last name is not expected");
@@ -103,9 +103,9 @@ public class GetBookingInfoTest extends BaseTest {
         spec.header(xml);
 
         // get booking with created booking ID
-        Response response= RestAssured.given().
-                spec(spec).
-                get("/booking/{bookingId}");
+        Response response = RestAssured.given()
+                .spec(spec)
+                .get("/booking/{bookingId}");
         response.print();
 
         // check of status code
@@ -115,7 +115,7 @@ public class GetBookingInfoTest extends BaseTest {
         SoftAssert softAssert = new SoftAssert();
 
         String actualFirstname = response.xmlPath().getString("booking.firstname");
-        softAssert.assertEquals(actualFirstname,"Olga", "Value of first name is not expected");
+        softAssert.assertEquals(actualFirstname, "Olga", "Value of first name is not expected");
 
         String actualLastName = response.xmlPath().getString("booking.lastname");
         softAssert.assertEquals(actualLastName, "Moroz", "Value of last name is not expected");

@@ -14,7 +14,10 @@ public class HealthCheckTest extends BaseTest {
 
     @Test
     public void healthCheckTest() {
-        given().spec(spec).when().get("/ping").
+        given()
+                .spec(spec)
+                .when()
+                .get("/ping").
                 then().
                 assertThat().
                 statusCode(201);
@@ -26,10 +29,10 @@ public class HealthCheckTest extends BaseTest {
         Header firstHeader = new Header("header_name1", "header_value2");
         spec.header(firstHeader);
 
-        Response response = RestAssured.given(spec).
-                header("header_name2", "header_value2").
-                log().all().
-                get("/ping");
+        Response response = RestAssured.given(spec)
+                .header("header_name2", "header_value2")
+                .log().all()
+                .get("/ping");
 
         // get all headers with headers class from response
         Headers headers = response.getHeaders();
@@ -51,10 +54,10 @@ public class HealthCheckTest extends BaseTest {
         Cookie firstCookie = new Cookie.Builder("cookie_name1", "cookie_value1").build();
         spec.cookie(firstCookie);
 
-        Response response = RestAssured.given(spec).
-                cookie("cookie_name2", "cookie_value2").
-                log().all().
-                get("/ping");
+        Response response = RestAssured.given(spec)
+                .cookie("cookie_name2", "cookie_value2")
+                .log().all()
+                .get("/ping");
 
         // get all cokiess with cookies class (as with headers)
 

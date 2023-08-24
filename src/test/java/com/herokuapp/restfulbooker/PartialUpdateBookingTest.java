@@ -25,7 +25,12 @@ public class PartialUpdateBookingTest extends BaseTest {
 
         // send request to the server and become a response
 
-        Response responseUpdate = RestAssured.given().spec(spec).auth().preemptive().basic("admin","password123").contentType(ContentType.JSON).body(partUpdateBody.toString()).patch("/" + bookingId);
+        Response responseUpdate = RestAssured.given()
+                .spec(spec)
+                .auth().preemptive().basic("admin","password123")
+                .contentType(ContentType.JSON)
+                .body(partUpdateBody.toString())
+                .patch("/" + bookingId);
         responseUpdate.print();
 
         // verification of status code

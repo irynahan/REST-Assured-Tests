@@ -17,9 +17,9 @@ public class GetBookingIdsTest extends BaseTest {
     public void getBookingIdsWithoutFiltersTest() {
 
         // Get response with booking ids
-        Response response = RestAssured.given().
-                spec(spec).
-                get("/booking");
+        Response response = RestAssured.given()
+                .spec(spec)
+                .get("/booking");
         response.print();
 
         // verify response with status code 200
@@ -37,9 +37,9 @@ public class GetBookingIdsTest extends BaseTest {
     @Test
     public void getBookingIdsWithFilterByFirstnameTest() {
         // get request with query
-        Response responseGetBookingByFirstname = RestAssured.given().
-                spec(spec).
-                get("/booking?firstname=Olga");
+        Response responseGetBookingByFirstname = RestAssured.given()
+                .spec(spec)
+                .get("/booking?firstname=Olga");
         responseGetBookingByFirstname.print();
 
     }
@@ -55,7 +55,6 @@ public class GetBookingIdsTest extends BaseTest {
         // get request booking with query filter
         Response responseGetBookingByFirstname = RestAssured.given(spec).get("/booking");
         responseGetBookingByFirstname.print();
-
 
 
     }
